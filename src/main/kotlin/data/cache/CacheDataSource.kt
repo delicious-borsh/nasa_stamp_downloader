@@ -23,13 +23,14 @@ class CacheDataSource {
 
             val json = Gson().fromJson<List<StampRecord>>(inputStream.reader(), itemType)
 
+            cache.clear()
             cache.putAll(json.toMap())
         }
     }
 
     fun updateCache(stampRecords: List<StampRecord>) {
         if (!File(CACHE_FOLDER_NAME).exists()) {
-            !File(CACHE_FOLDER_NAME).mkdir()
+            File(CACHE_FOLDER_NAME).mkdir()
         }
 
         File(FILE_NAME).outputStream().use { os ->
@@ -44,6 +45,8 @@ class CacheDataSource {
     fun getFromCache(stampMessageId: StampMessageID?): StampRecord? {
         return cache[stampMessageId]
     }
+
+    fun getAllFromCache(): List<StampRecord> = cache.map { it.value }
 
     private fun List<StampRecord>.toMap(): Map<StampMessageID, StampRecord> =
         this.associateBy { it.id }

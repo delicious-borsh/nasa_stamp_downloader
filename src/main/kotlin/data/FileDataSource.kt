@@ -12,7 +12,7 @@ class FileDataSource {
 
     private fun InputStream.saveToFile(filePath: String) = use { input ->
         if (!File(IMAGES_FOLDER_NAME).exists()) {
-            !File(IMAGES_FOLDER_NAME).mkdir()
+            File(IMAGES_FOLDER_NAME).mkdir()
         }
         val file = File(filePath)
         if (file.exists()) {

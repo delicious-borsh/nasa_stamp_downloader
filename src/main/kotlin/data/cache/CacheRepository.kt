@@ -17,4 +17,6 @@ class CacheRepository {
 
     fun getFromCache(stampMessageId: StampMessageID?): StampRecord? =
         cacheDataSource.getFromCache(stampMessageId)
+
+    fun getAllFromCache(): List<StampRecord> = cacheDataSource.getAllFromCache()
 }
