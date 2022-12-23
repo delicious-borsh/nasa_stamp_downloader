@@ -30,7 +30,7 @@ class StampRepository {
         )
     }
 
-    fun downloadFileForStamp(stampRecord: StampRecord) {
+    fun downloadFileForStamp(stampRecord: StampRecord) {//TODO WHY not finish with this method
         Logger.log(LOG_TAG, "Loading file for ${stampRecord.fileName}")
         retrofitDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
             .enqueue(object : Callback<ResponseBody> {
