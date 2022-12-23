@@ -1,7 +1,7 @@
-.idea
-.gradle
-credentials.json
-images
-build
-tokens
-cache
+/.idea
+/.gradle
+/credentials.json
+/images
+/build
+/tokens
+/cache

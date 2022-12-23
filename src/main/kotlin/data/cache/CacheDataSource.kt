@@ -1,7 +1,10 @@
-package data
+package data.cache
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import data.CACHE_FOLDER_NAME
+import data.entity.StampMessageID
+import data.entity.StampRecord
 import java.io.File
 import java.io.OutputStreamWriter
 

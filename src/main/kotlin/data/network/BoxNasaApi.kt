@@ -1,4 +1,4 @@
-package data
+package data.network
 
 import okhttp3.ResponseBody
 import retrofit2.Call

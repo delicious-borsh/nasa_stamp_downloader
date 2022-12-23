@@ -1,4 +1,4 @@
-package data
+package data.entity
 
 data class StampDto(
     val id: StampMessageID,

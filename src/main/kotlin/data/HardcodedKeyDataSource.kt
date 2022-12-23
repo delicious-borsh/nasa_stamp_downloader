@@ -1,5 +1,6 @@
 package data
 
+import data.entity.StampUri
 import java.net.URI
 
 class HardcodedKeyDataSource {

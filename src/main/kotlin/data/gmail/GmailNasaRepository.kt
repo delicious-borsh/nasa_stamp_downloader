@@ -1,6 +1,8 @@
 package data.gmail
 
 import data.*
+import data.entity.StampDto
+import data.entity.StampMessageID
 
 class GmailNasaRepository {
 

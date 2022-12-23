@@ -7,7 +7,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.gmail.Gmail
 import com.google.api.services.gmail.model.Message
 import data.Logger
-import data.StampMessageID
+import data.entity.StampMessageID
 
 class GmailDataSource {
 
