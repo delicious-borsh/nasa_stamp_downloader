@@ -1,6 +1,6 @@
-import data.cache.CacheDataSource
 import data.Logger
 import data.StampRepository
+import data.cache.CacheRepository
 import data.gmail.GmailNasaRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -11,16 +11,15 @@ class Main {
 
         private const val LOG_TAG = "Main"
 
-
         private val gmailRepository = GmailNasaRepository()
         private val stampRepository = StampRepository()
-        private val cacheDataSource = CacheDataSource()
+        private val cacheRepository = CacheRepository()
 
         @JvmStatic
         fun main(args: Array<String>): Unit = runBlocking {
             launch {
 
-                cacheDataSource.loadCache()
+                cacheRepository.loadCache()
 
                 val messages = gmailRepository.getMessages()
 
@@ -30,12 +29,12 @@ class Main {
                         "----------------- Processing stamp ${index + 1}/${messages.size} ------------------"
                     )
                     Logger.log(LOG_TAG, "Getting message for id $id")
-                    cacheDataSource.getFromCache(id) ?: gmailRepository.getRemoteMessage(id)?.let {
+                    cacheRepository.getFromCache(id) ?: gmailRepository.getRemoteMessage(id)?.let {
                         stampRepository.resolveStampInfo(it)
                     }
                 }
 
-                cacheDataSource.updateCache(stampRecords)
+                cacheRepository.updateCache(stampRecords)
 
                 stampRecords.forEach {
                     stampRepository.downloadFileForStamp(it)
