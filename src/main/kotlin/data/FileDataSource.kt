@@ -6,13 +6,13 @@ import java.io.InputStream
 
 class FileDataSource {
 
-    fun saveFile(responseBody: ResponseBody, fileName: String) {
-        responseBody.byteStream().saveToFile("$FOLDER_NAME/$fileName.pdf")
+    fun saveFile(responseBody: ResponseBody, filePath: String) {
+        responseBody.byteStream().saveToFile(filePath)
     }
 
     private fun InputStream.saveToFile(filePath: String) = use { input ->
-        if (!File(FOLDER_NAME).exists()) {
-            !File(FOLDER_NAME).mkdir()
+        if (!File(IMAGES_FOLDER_NAME).exists()) {
+            !File(IMAGES_FOLDER_NAME).mkdir()
         }
         val file = File(filePath)
         if (file.exists()) {
@@ -29,6 +29,5 @@ class FileDataSource {
     companion object {
 
         private const val LOG_TAG = "FileDataSource"
-        private const val FOLDER_NAME = "images"
     }
 }

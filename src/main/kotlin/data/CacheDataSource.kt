@@ -25,8 +25,8 @@ class CacheDataSource {
     }
 
     fun updateCache(stampRecords: List<StampRecord>) {
-        if (!File(FOLDER_NAME).exists()) {
-            !File(FOLDER_NAME).mkdir()
+        if (!File(CACHE_FOLDER_NAME).exists()) {
+            !File(CACHE_FOLDER_NAME).mkdir()
         }
 
         File(FILE_NAME).outputStream().use { os ->
@@ -47,7 +47,6 @@ class CacheDataSource {
 
     companion object {
 
-        private const val FOLDER_NAME = "cache"
-        private const val FILE_NAME = "$FOLDER_NAME/stamp_records.json"
+        private const val FILE_NAME = "$CACHE_FOLDER_NAME/stamp_records.json"
     }
 }
