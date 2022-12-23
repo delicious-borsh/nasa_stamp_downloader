@@ -1,6 +1,6 @@
 package data
 
 @JvmInline
-value class MessageID(
+value class StampMessageID(
     val value: String
 )

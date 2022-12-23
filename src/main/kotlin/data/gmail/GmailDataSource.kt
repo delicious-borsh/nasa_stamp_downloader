@@ -7,7 +7,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.gmail.Gmail
 import com.google.api.services.gmail.model.Message
 import data.Logger
-import data.MessageID
+import data.StampMessageID
 
 class GmailDataSource {
 
@@ -24,12 +24,12 @@ class GmailDataSource {
             .setApplicationName(APPLICATION_NAME)
             .build()
 
-    fun getMessageIdList(query: String): List<MessageID> {
+    fun getMessageIdList(query: String): List<StampMessageID> {
         val listResponse = gmail.users().messages().list(USER)
             .setQ(query)
             .execute()
 
-        return listResponse.messages.mapNotNull { MessageID(it.id) }
+        return listResponse.messages.mapNotNull { StampMessageID(it.id) }
             .also {
                 Logger.log(LOG_TAG, "Got list of ${it.size} messages")
             }

@@ -11,45 +11,40 @@ class StampRepository {
     private val fileDataSource = FileDataSource()
     private val hardcodedKeyDataSource = HardcodedKeyDataSource()
 
-    suspend fun downloadAndSave(stamps: List<Stamp>) {
-        for (index in stamps.indices) {
-            Logger.log(
-                LOG_TAG,
-                "----------------- Processing file ${index + 1}/${stamps.size} ------------------"
-            )
-            downloadAndSave(stamps[index])
-        }
-    }
+    suspend fun resolveStampInfo(stampDto: StampDto): StampRecord {
+        val string = retrofitDataSource.get(stampDto.stampUrl.value.toString())
 
-    private suspend fun downloadAndSave(stamp: Stamp) {
-        val string = retrofitDataSource.get(stamp.stampUrl.toString())
+        val fileName = hardcodedKeyDataSource.getFileName(string)
 
-        val id = hardcodedKeyDataSource.getId(string)
-
-        Logger.log(LOG_TAG, "File $id is from message ${stamp.messageID}")
+        Logger.log(LOG_TAG, "File $fileName is from message ${stampDto.id}")
 
         val sharedName = hardcodedKeyDataSource.getSharedName(string)
 
-        saveFile(sharedName, id)
+        return StampRecord(
+            stampDto.id,
+            fileName,
+            sharedName
+        )
     }
 
-    private fun saveFile(sharedName: String, fileId: String) {
-        Logger.log(LOG_TAG, "Loading file for $fileId")
-        retrofitDataSource.getFile(sharedName, fileId).enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(
-                call: Call<ResponseBody>,
-                response: Response<ResponseBody>
-            ) {
-                Logger.log(LOG_TAG, "Loading finished for $fileId")
-                response.body()?.let {
-                    fileDataSource.saveFile(it, "images/$fileId.pdf")
+    fun downloadFileForStamp(stampRecord: StampRecord) {
+        Logger.log(LOG_TAG, "Loading file for ${stampRecord.fileName}")
+        retrofitDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
+            .enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    Logger.log(LOG_TAG, "Loading finished for  ${stampRecord.fileName}")
+                    response.body()?.let {
+                        fileDataSource.saveFile(it, stampRecord.fileName)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Logger.log(LOG_TAG, "Failed to load file for $fileId")
-            }
-        })
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Logger.log(LOG_TAG, "Failed to load file for ${stampRecord.fileName}")
+                }
+            })
     }
 
     companion object {

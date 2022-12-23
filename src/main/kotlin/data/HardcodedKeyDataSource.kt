@@ -4,15 +4,15 @@ import java.net.URI
 
 class HardcodedKeyDataSource {
 
-    fun getId(page: String): String = getSubstringFromPage("{\"items\":[{\"typedID\":", page)
+    fun getFileName(page: String): String = getSubstringFromPage("{\"items\":[{\"typedID\":", page)
 
     fun getSharedName(page: String): String = getSubstringFromPage("{\"sharedName\":", page)
 
-    fun getStampLink(page: String): URI? {
+    fun getStampLink(page: String): StampUri? {
         val urlString = getSubstringFromPage2("We hope your", page)
 
         return try {
-            URI.create(urlString)
+            StampUri(URI.create(urlString))
         } catch (ex: Exception) {
             null
         }

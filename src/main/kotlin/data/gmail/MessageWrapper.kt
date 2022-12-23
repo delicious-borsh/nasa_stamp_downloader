@@ -1,7 +1,7 @@
 package data.gmail
 
 import com.google.api.services.gmail.model.Message
-import data.MessageID
+import data.StampMessageID
 
 class MessageWrapper(
     private val message: Message,
@@ -22,7 +22,7 @@ class MessageWrapper(
             }
             ?.get("value")?.toString()
 
-    fun getId(): MessageID? = message.id?.let { MessageID(it) }
+    fun getId(): StampMessageID? = message.id?.let { StampMessageID(it) }
 
     fun getBody(): String? = plainBody
 }
