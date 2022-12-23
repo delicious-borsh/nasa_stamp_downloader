@@ -38,7 +38,7 @@ class StampRepository {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    Logger.log(LOG_TAG, "Loading finished for  ${stampRecord.fileName}")
+                    Logger.log(LOG_TAG, "Loading finished for ${stampRecord.fileName}")
                     response.body()?.let {
                         fileDataSource.saveFile(it, stampRecord.getFullPath())
                     }
