@@ -29,8 +29,8 @@ class Main {
                     val name = record.fileName
 
                     val path = "images/$name.pdf"
-                    val imagePath = "pdf-to-image/${name}_0_image.png"
-                    val squarePath = "testsssss/${name}_0_square.png"
+                    val imagePath = "pdf-to-image/${name}_image.png"
+                    val squarePath = "testsssss/${name}_square.png"
 
                     PdfConverter().processSingleDocument(
                         path,
