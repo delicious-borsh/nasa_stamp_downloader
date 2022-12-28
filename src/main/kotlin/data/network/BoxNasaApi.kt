@@ -11,9 +11,9 @@ interface BoxNasaApi {
 
     @Streaming
     @GET("index.php")
-    fun downloadFile(
+    suspend fun downloadFile(
         @Query("shared_name") sharedName: String,
         @Query("file_id") fileId: String,
         @Query("rm") rm: String = "box_download_shared_file",
-    ): Call<ResponseBody>
+    ): ResponseBody
 }

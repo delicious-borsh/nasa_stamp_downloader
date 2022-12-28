@@ -26,7 +26,7 @@ class RetrofitDataSource() {
 
     suspend fun getStampPage(sharedName: String): String = boxNasaApi.getStampPage(sharedName)
 
-    fun getFile(sharedName: String, fileId: String): Call<ResponseBody> =
+    suspend fun getFile(sharedName: String, fileId: String): ResponseBody =
         boxNasaApi.downloadFile(sharedName, fileId)
 
     suspend fun get(url: String): String = someStrangeApi.get(url)

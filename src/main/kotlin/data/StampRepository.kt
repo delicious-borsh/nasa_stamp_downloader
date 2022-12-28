@@ -11,7 +11,6 @@ import java.io.File
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class StampRepository {
 
@@ -35,44 +34,17 @@ class StampRepository {
         )
     }
 
-    suspend fun downloadFileForStamp(stampRecord: StampRecord) = //TODO why this methods prevents main from finishing
-        suspendCoroutine<Unit> { continuation ->
-            Logger.log(LOG_TAG, "Loading file for ${stampRecord.fileName}")
+    suspend fun downloadFileForStamp(stampRecord: StampRecord) { //TODO why this methods prevents main from finishing
+        Logger.log(LOG_TAG, "Loading file for ${stampRecord.fileName}")
 
-            if (File(stampRecord.getFullPath()).exists()) {
-                Logger.log(LOG_TAG, "File ${stampRecord.fileName} already exists, skipping")
-                continuation.resume(Unit)
-            } else {
-                retrofitDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
-                    .enqueue(
-                        GetFileCallback(
-                            continuation,
-                            stampRecord,
-                        )
-                    )
-            }
-        }
+        if (File(stampRecord.getFullPath()).exists()) {
+            Logger.log(LOG_TAG, "File ${stampRecord.fileName} already exists, skipping")
+        } else {
+            val body = retrofitDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
 
-    inner class GetFileCallback(
-        private val continuation: Continuation<Unit>,
-        private val stampRecord: StampRecord,
-    ) : Callback<ResponseBody> {
-
-        override fun onResponse(
-            call: Call<ResponseBody>,
-            response: Response<ResponseBody>
-        ) {
-            Logger.log(LOG_TAG, "Loading finished for ${stampRecord.fileName}")
-            response.body()?.let {
+            body.let {
                 fileDataSource.saveFile(it, stampRecord.getFullPath())
             }
-
-            continuation.resume(Unit)
-        }
-
-        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-            Logger.log(LOG_TAG, "Failed to load file for ${stampRecord.fileName}")
-            continuation.resumeWithException(t)
         }
     }
 

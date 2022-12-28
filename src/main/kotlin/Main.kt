@@ -23,15 +23,21 @@ class Main {
 
                 downloadStampsUseCase()
 
-                val path = "images/f_749107622913.pdf"
-                val imagePath = "pdf-to-image/f_749107622913_0_image.png"
-                val squarePath = "testsssss/f_749107622913_0_square.png"
+                val records = getStampsUseCase()
 
-                PdfConverter().processSingleDocument(
-                    path,
-                    imagePath,
-                    squarePath
-                )
+                for (record in records) {
+                    val name = record.fileName
+
+                    val path = "images/$name.pdf"
+                    val imagePath = "pdf-to-image/${name}_0_image.png"
+                    val squarePath = "testsssss/${name}_0_square.png"
+
+                    PdfConverter().processSingleDocument(
+                        path,
+                        imagePath,
+                        squarePath
+                    )
+                }
 
             }
         }
