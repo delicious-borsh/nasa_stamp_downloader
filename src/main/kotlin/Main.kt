@@ -5,8 +5,7 @@ import data.cache.CacheRepository
 import data.gmail.GmailNasaRepository
 import domain.DownloadStampsUseCase
 import domain.GetStampsRecordsUseCase
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.io.File
 
 class Main {
@@ -22,7 +21,7 @@ class Main {
         fun main(args: Array<String>): Unit = runBlocking {
             launch {
 
-//                downloadStampsUseCase()
+                downloadStampsUseCase()
 
                 val path = "images/f_749107622913.pdf"
                 val imagePath = "pdf-to-image/f_749107622913_0_image.png"
