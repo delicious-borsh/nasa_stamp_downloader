@@ -1,5 +1,6 @@
 package data
 
+import PathsProvider
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.InputStream
@@ -11,8 +12,8 @@ class FileDataSource {
     }
 
     private fun InputStream.saveToFile(filePath: String) = use { input ->
-        if (!File(IMAGES_FOLDER_NAME).exists()) {
-            File(IMAGES_FOLDER_NAME).mkdir()
+        if (!File(PathsProvider.getPdfFolderName()).exists()) {
+            File(PathsProvider.getPdfFolderName()).mkdir()
         }
         val file = File(filePath)
         if (file.exists()) {

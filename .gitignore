@@ -1,8 +1,9 @@
 /.idea
 /.gradle
 /credentials.json
-/images
 /build
 /tokens
 /cache
-/pdf-to-image
+/pdf
+/images
+/squared

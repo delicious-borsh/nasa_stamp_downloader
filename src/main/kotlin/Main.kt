@@ -1,12 +1,8 @@
 import com.ponykamni.imageprocessor.PdfConverter
-import data.Logger
-import data.StampRepository
-import data.cache.CacheRepository
-import data.gmail.GmailNasaRepository
 import domain.DownloadStampsUseCase
 import domain.GetStampsRecordsUseCase
-import kotlinx.coroutines.*
-import java.io.File
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class Main {
 
@@ -28,12 +24,14 @@ class Main {
                 for (record in records) {
                     val name = record.fileName
 
-                    val path = "images/$name.pdf"
-                    val imagePath = "pdf-to-image/${name}_image.png"
-                    val squarePath = "testsssss/${name}_square.png"
+                    val pdfPath = "${PathsProvider.getPdfFolderName()}/$name.pdf"
+                    val imagePath =
+                        "${PathsProvider.getImagesFolderName()}/${name}${PathsProvider.getImagesSuffix()}.png"
+                    val squarePath =
+                        "${PathsProvider.getSquareImagesFolderName()}/${name}${PathsProvider.getSquareImagesSuffix()}.png"
 
                     PdfConverter().processSingleDocument(
-                        path,
+                        pdfPath,
                         imagePath,
                         squarePath
                     )
@@ -41,17 +39,5 @@ class Main {
 
             }
         }
-
-        private fun composeFinalImageFileName(sourceFile: File, suffix: String): String {
-            val name = sourceFile.getNameWithoutExtension()
-            val ext = sourceFile.extension
-            return "$name$suffix.$ext"
-        }
-
-
-        private fun File.getNameWithoutExtension(): String {
-            return this.name.split('.')[0]
-        }
-
     }
 }

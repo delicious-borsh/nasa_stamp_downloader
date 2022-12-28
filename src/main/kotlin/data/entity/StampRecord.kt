@@ -1,6 +1,6 @@
 package data.entity
 
-import data.IMAGES_FOLDER_NAME
+import PathsProvider
 
 data class StampRecord(
     val id: StampMessageID,
@@ -8,5 +8,5 @@ data class StampRecord(
     val sharedFileName: String,
 ) {
 
-    fun getFullPath(): String = "$IMAGES_FOLDER_NAME/$fileName.pdf"
+    fun getFullPath(): String = "${PathsProvider.getPdfFolderName()}/$fileName.pdf"
 }

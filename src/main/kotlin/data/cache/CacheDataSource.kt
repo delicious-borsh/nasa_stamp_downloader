@@ -1,8 +1,8 @@
 package data.cache
 
+import PathsProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import data.CACHE_FOLDER_NAME
 import data.entity.StampMessageID
 import data.entity.StampRecord
 import java.io.File
@@ -29,8 +29,8 @@ class CacheDataSource {
     }
 
     fun updateCache(stampRecords: List<StampRecord>) {
-        if (!File(CACHE_FOLDER_NAME).exists()) {
-            File(CACHE_FOLDER_NAME).mkdir()
+        if (!File(path).exists()) {
+            File(path).mkdir()
         }
 
         File(FILE_NAME).outputStream().use { os ->
@@ -52,7 +52,8 @@ class CacheDataSource {
         this.associateBy { it.id }
 
     companion object {
+        private val path = PathsProvider.getCacheFolderName()
 
-        private const val FILE_NAME = "$CACHE_FOLDER_NAME/stamp_records.json"
+        private val FILE_NAME = "$path/stamp_records.json"
     }
 }
