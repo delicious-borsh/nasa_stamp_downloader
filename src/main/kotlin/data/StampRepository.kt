@@ -30,7 +30,8 @@ class StampRepository {
         return StampRecord(
             stampDto.id,
             fileName,
-            sharedName
+            sharedName,
+            stampDto.missionName
         )
     }
 

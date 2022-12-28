@@ -24,7 +24,7 @@ class GmailNasaRepository {
 
         Logger.log(LOG_TAG, "Got body for messageID $stampMessageID")
 
-        return StampDto(stampMessageID, stampUri).also {
+        return StampDto(stampMessageID, stampUri, hardcodedKeyDataSource.getMissionTitle(body)).also {
             Logger.log(LOG_TAG, "Got stamp $it")
         }
     }

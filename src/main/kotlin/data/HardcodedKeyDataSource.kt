@@ -9,6 +9,8 @@ class HardcodedKeyDataSource {
 
     fun getSharedName(page: String): String = getSubstringFromPage("{\"sharedName\":", page)
 
+    fun getMissionTitle(page: String): String = getSubstringFromPage3("We were so glad to host you virtually for the launch of", page)
+
     fun getStampLink(page: String): StampUri? {
         val urlString = getSubstringFromPage2("We hope your", page)
 
@@ -35,8 +37,19 @@ class HardcodedKeyDataSource {
         return page.substring(startIndex, endIndex)
     }
 
+    private fun getSubstringFromPage3(substring: String, page: String): String {
+        val startIndex = indexOfKeyEnd(substring, page)
+        val endIndex = indexOfNearestPeriodChar(startIndex, page)
+
+        return page.substring(startIndex, endIndex)
+    }
+
     private fun indexOfNearestQuotes(startIndex: Int, page: String): Int {
         return page.indexOf('"', startIndex)
+    }
+
+    private fun indexOfNearestPeriodChar(startIndex: Int, page: String): Int {
+        return page.indexOf('.', startIndex)
     }
 
     private fun indexOfKeyEnd(substring: String, page: String): Int {
