@@ -9,7 +9,7 @@ class HardcodedKeyDataSource {
 
     fun getSharedName(page: String): String = getSubstringFromPage("{\"sharedName\":", page)
 
-    fun getMissionTitle(page: String): String = getSubstringFromPage3("We were so glad to host you virtually for the launch of", page)
+    fun getMissionTitle(subject: String?): String? = subject?.let { getTitleFromSubject(it) }
 
     fun getStampLink(page: String): StampUri? {
         val urlString = getSubstringFromPage2("We hope your", page)
@@ -37,22 +37,25 @@ class HardcodedKeyDataSource {
         return page.substring(startIndex, endIndex)
     }
 
-    private fun getSubstringFromPage3(substring: String, page: String): String {
-        val startIndex = indexOfKeyEnd(substring, page)
-        val endIndex = indexOfNearestPeriodChar(startIndex, page)
-
-        return page.substring(startIndex, endIndex)
-    }
-
     private fun indexOfNearestQuotes(startIndex: Int, page: String): Int {
         return page.indexOf('"', startIndex)
     }
 
-    private fun indexOfNearestPeriodChar(startIndex: Int, page: String): Int {
-        return page.indexOf('.', startIndex)
-    }
-
     private fun indexOfKeyEnd(substring: String, page: String): Int {
         return page.indexOf(substring) + substring.length + 1
+    }
+
+    private fun getTitleFromSubject(subject: String): String {
+        val startIndex = subject.indexOf(string = "your", ignoreCase = true) + "your".length + 1
+        val oneEndIndex = subject.indexOf(string = "virtual", ignoreCase = true) - 1
+        val anotherEndIndex = subject.indexOf(string = "participation", ignoreCase = true) - 1
+
+        val endIndex = if (oneEndIndex < 0) {
+            anotherEndIndex
+        } else {
+            oneEndIndex
+        }
+
+        return subject.substring(startIndex, endIndex)
     }
 }
