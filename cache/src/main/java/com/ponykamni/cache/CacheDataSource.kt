@@ -1,4 +1,4 @@
-package com.ponykamni.stamp.data.cache
+package com.ponykamni.cache
 
 import com.ponykamni.path.PathsProvider
 import com.google.gson.Gson
