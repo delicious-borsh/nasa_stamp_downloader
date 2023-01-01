@@ -2,17 +2,19 @@ package data
 
 import data.entity.StampDto
 import data.entity.StampRecord
-import data.network.RetrofitDataSource
+import data.network.RemoteFileDataSource
+import data.network.RemotePageDataSource
 import java.io.File
 
 class StampRepository {
 
-    private val retrofitDataSource = RetrofitDataSource()
+    private val remoteFileDataSource = RemoteFileDataSource()
+    private val remotePageDataSource = RemotePageDataSource()
     private val fileDataSource = FileDataSource()
     private val hardcodedPageDataDataSource = HardcodedPageDataDataSource()
 
     suspend fun resolveStampInfo(stampDto: StampDto): StampRecord {
-        val string = retrofitDataSource.get(stampDto.stampUrl.value.toString())
+        val string = remotePageDataSource.get(stampDto.stampUrl.value.toString())
 
         val fileName = hardcodedPageDataDataSource.getFileName(string)
 
@@ -34,7 +36,7 @@ class StampRepository {
         if (File(stampRecord.getFullPath()).exists()) {
             Logger.log(LOG_TAG, "File ${stampRecord.fileName} already exists, skipping")
         } else {
-            val body = retrofitDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
+            val body = remoteFileDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
 
             body.let {
                 fileDataSource.saveFile(it, stampRecord.getFullPath())
