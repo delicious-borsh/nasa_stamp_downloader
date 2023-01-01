@@ -1,6 +1,6 @@
 package com.ponykamni.stamp.domain
 
-import com.ponykamni.stamp.data.Logger
+import com.ponykamni.logger.Logger
 import com.ponykamni.stamp.data.StampRepository
 import com.ponykamni.stamp.data.cache.CacheRepository
 import com.ponykamni.stamp.data.gmail.GmailNasaRepository

@@ -8,13 +8,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation(project(":logger"))
-
-    implementation("org.apache.pdfbox:pdfbox:2.0.20")
 }

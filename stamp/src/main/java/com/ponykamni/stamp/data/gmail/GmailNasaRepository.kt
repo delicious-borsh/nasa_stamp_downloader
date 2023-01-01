@@ -3,7 +3,7 @@ package com.ponykamni.stamp.data.gmail
 import com.ponykamni.entity.StampDto
 import com.ponykamni.entity.StampMessageID
 import com.ponykamni.stamp.data.HardcodedMessageDataDataSource
-import com.ponykamni.stamp.data.Logger
+import com.ponykamni.logger.Logger
 
 class GmailNasaRepository {
 

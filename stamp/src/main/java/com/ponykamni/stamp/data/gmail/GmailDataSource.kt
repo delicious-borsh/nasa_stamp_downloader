@@ -6,7 +6,7 @@ import com.google.api.client.json.JsonFactory
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.gmail.Gmail
 import com.google.api.services.gmail.model.Message
-import com.ponykamni.stamp.data.Logger
+import com.ponykamni.logger.Logger
 import com.ponykamni.entity.StampMessageID
 
 class GmailDataSource {

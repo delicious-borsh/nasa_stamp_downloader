@@ -1,4 +1,4 @@
-package com.ponykamni.stamp.data
+package com.ponykamni.logger
 
 object Logger {
 

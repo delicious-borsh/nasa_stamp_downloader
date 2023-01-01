@@ -1,8 +1,8 @@
 package com.ponykamni.stamp.data
 
-import com.ponykamni.stamp.PathsProvider
 import com.ponykamni.entity.StampDto
 import com.ponykamni.entity.StampRecord
+import com.ponykamni.logger.Logger
 import com.ponykamni.stamp.data.network.RemoteFileDataSource
 import com.ponykamni.stamp.data.network.RemotePageDataSource
 import java.io.File
