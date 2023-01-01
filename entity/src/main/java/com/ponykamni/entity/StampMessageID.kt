@@ -1,4 +1,4 @@
-package data.entity
+package com.ponykamni.entity
 
 @JvmInline
 value class StampMessageID(

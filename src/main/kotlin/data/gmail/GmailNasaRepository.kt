@@ -1,8 +1,8 @@
 package data.gmail
 
 import data.*
-import data.entity.StampDto
-import data.entity.StampMessageID
+import com.ponykamni.entity.StampDto
+import com.ponykamni.entity.StampMessageID
 
 class GmailNasaRepository {
 

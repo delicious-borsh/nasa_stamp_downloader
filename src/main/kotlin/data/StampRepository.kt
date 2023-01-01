@@ -1,7 +1,8 @@
 package data
 
-import data.entity.StampDto
-import data.entity.StampRecord
+import PathsProvider
+import com.ponykamni.entity.StampDto
+import com.ponykamni.entity.StampRecord
 import data.network.RemoteFileDataSource
 import data.network.RemotePageDataSource
 import java.io.File
@@ -36,13 +37,17 @@ class StampRepository {
         if (File(stampRecord.getFullPath()).exists()) {
             Logger.log(LOG_TAG, "File ${stampRecord.fileName} already exists, skipping")
         } else {
-            val body = remoteFileDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
+            val body =
+                remoteFileDataSource.getFile(stampRecord.sharedFileName, stampRecord.fileName)
 
             body.let {
                 fileDataSource.saveFile(it, stampRecord.getFullPath())
             }
         }
     }
+
+    private fun StampRecord.getFullPath(): String =
+        "${PathsProvider.getPdfFolderName()}/$fileName.pdf"
 
     companion object {
 

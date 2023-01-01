@@ -1,7 +1,7 @@
 package data.cache
 
-import data.entity.StampMessageID
-import data.entity.StampRecord
+import com.ponykamni.entity.StampMessageID
+import com.ponykamni.entity.StampRecord
 
 class CacheRepository {
 

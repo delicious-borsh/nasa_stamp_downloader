@@ -1,6 +1,4 @@
-package data.entity
-
-import PathsProvider
+package com.ponykamni.entity
 
 data class StampRecord(
     val id: StampMessageID,
@@ -8,6 +6,4 @@ data class StampRecord(
     val sharedFileName: String,
     val missionName: String? = null,
 ) {
-
-    fun getFullPath(): String = "${PathsProvider.getPdfFolderName()}/$fileName.pdf"
 }

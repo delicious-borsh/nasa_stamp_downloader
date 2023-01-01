@@ -3,8 +3,8 @@ package data.cache
 import PathsProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import data.entity.StampMessageID
-import data.entity.StampRecord
+import com.ponykamni.entity.StampMessageID
+import com.ponykamni.entity.StampRecord
 import java.io.File
 import java.io.OutputStreamWriter
 

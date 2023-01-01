@@ -1,7 +1,7 @@
 package data.gmail
 
 import com.google.api.services.gmail.model.Message
-import data.entity.StampMessageID
+import com.ponykamni.entity.StampMessageID
 
 class MessageWrapper(
     private val message: Message,
