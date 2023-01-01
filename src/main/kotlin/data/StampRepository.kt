@@ -3,29 +3,22 @@ package data
 import data.entity.StampDto
 import data.entity.StampRecord
 import data.network.RetrofitDataSource
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 class StampRepository {
 
     private val retrofitDataSource = RetrofitDataSource()
     private val fileDataSource = FileDataSource()
-    private val hardcodedKeyDataSource = HardcodedKeyDataSource()
+    private val hardcodedPageDataDataSource = HardcodedPageDataDataSource()
 
     suspend fun resolveStampInfo(stampDto: StampDto): StampRecord {
         val string = retrofitDataSource.get(stampDto.stampUrl.value.toString())
 
-        val fileName = hardcodedKeyDataSource.getFileName(string)
+        val fileName = hardcodedPageDataDataSource.getFileName(string)
 
         Logger.log(LOG_TAG, "File $fileName is from message ${stampDto.id}")
 
-        val sharedName = hardcodedKeyDataSource.getSharedName(string)
+        val sharedName = hardcodedPageDataDataSource.getSharedName(string)
 
         return StampRecord(
             stampDto.id,

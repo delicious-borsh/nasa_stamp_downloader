@@ -7,7 +7,7 @@ import data.entity.StampMessageID
 class GmailNasaRepository {
 
     private val gmailDataSource = GmailDataSource()
-    private val hardcodedKeyDataSource = HardcodedKeyDataSource()
+    private val hardcodedMessageDataDataSource = HardcodedMessageDataDataSource()
 
     fun getMessages(): List<StampMessageID> = gmailDataSource.getMessageIdList(STAMP_QUERY)
 
@@ -17,14 +17,14 @@ class GmailNasaRepository {
 
         val body = wrapper.getBody() ?: return null
         val stampUri =
-            hardcodedKeyDataSource.getStampLink(body) ?: return null
+            hardcodedMessageDataDataSource.getStampLink(body) ?: return null
                 .also {
                     Logger.log(LOG_TAG, "Failed to create url for $stampMessageID")
                 }
 
         Logger.log(LOG_TAG, "Got body for messageID $stampMessageID")
 
-        val title = hardcodedKeyDataSource.getMissionTitle(wrapper.getSubject())
+        val title = hardcodedMessageDataDataSource.getMissionTitle(wrapper.getSubject())
 //        val title = (wrapper.getSubject())
 
         return StampDto(stampMessageID, stampUri, title).also {
