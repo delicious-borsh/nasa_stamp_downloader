@@ -1,6 +1,7 @@
-package com.ponykamni.stamp
+package com.ponykamni.main
 
 import com.ponykamni.imageprocessor.PdfConverter
+import com.ponykamni.path.PathsProvider
 import com.ponykamni.stamp.domain.DownloadStampsUseCase
 import com.ponykamni.stamp.domain.GetStampsRecordsUseCase
 import kotlinx.coroutines.launch
@@ -10,7 +11,7 @@ class Main {
 
     companion object {
 
-        private const val LOG_TAG = "com.ponykamni.stamp.Main"
+        private const val LOG_TAG = "com.ponykamni.main.Main"
 
         private val downloadStampsUseCase = DownloadStampsUseCase()
         private val getStampsUseCase = GetStampsRecordsUseCase()

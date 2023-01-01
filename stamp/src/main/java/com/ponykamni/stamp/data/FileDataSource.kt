@@ -1,7 +1,7 @@
 package com.ponykamni.stamp.data
 
 import com.ponykamni.logger.Logger
-import com.ponykamni.stamp.PathsProvider
+import com.ponykamni.path.PathsProvider
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.InputStream

@@ -1,4 +1,4 @@
-package com.ponykamni.stamp
+package com.ponykamni.path
 
 object PathsProvider {
 
