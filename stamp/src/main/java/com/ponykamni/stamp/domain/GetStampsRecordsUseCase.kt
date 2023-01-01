@@ -1,6 +1,6 @@
-package domain
+package com.ponykamni.stamp.domain
 
-import data.cache.CacheRepository
+import com.ponykamni.stamp.data.cache.CacheRepository
 import com.ponykamni.entity.StampRecord
 
 class GetStampsRecordsUseCase {

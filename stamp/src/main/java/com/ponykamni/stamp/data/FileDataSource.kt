@@ -1,6 +1,6 @@
-package data
+package com.ponykamni.stamp.data
 
-import PathsProvider
+import com.ponykamni.stamp.PathsProvider
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.InputStream

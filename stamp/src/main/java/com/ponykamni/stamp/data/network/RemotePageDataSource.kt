@@ -1,4 +1,4 @@
-package data.network
+package com.ponykamni.stamp.data.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

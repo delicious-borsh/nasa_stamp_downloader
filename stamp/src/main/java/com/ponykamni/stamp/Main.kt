@@ -1,6 +1,8 @@
+package com.ponykamni.stamp
+
 import com.ponykamni.imageprocessor.PdfConverter
-import domain.DownloadStampsUseCase
-import domain.GetStampsRecordsUseCase
+import com.ponykamni.stamp.domain.DownloadStampsUseCase
+import com.ponykamni.stamp.domain.GetStampsRecordsUseCase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -8,7 +10,7 @@ class Main {
 
     companion object {
 
-        private const val LOG_TAG = "Main"
+        private const val LOG_TAG = "com.ponykamni.stamp.Main"
 
         private val downloadStampsUseCase = DownloadStampsUseCase()
         private val getStampsUseCase = GetStampsRecordsUseCase()
@@ -17,9 +19,9 @@ class Main {
         fun main(args: Array<String>): Unit = runBlocking {
             launch {
 
-                downloadStampsUseCase()
+                Companion.downloadStampsUseCase()
 
-                val records = getStampsUseCase()
+                val records = Companion.getStampsUseCase()
 
                 for (record in records) {
                     val name = record.fileName

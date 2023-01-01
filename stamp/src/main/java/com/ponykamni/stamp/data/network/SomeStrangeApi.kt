@@ -1,4 +1,4 @@
-package data.network
+package com.ponykamni.stamp.data.network
 
 import retrofit2.http.*
 

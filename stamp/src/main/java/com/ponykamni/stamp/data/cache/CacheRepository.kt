@@ -1,4 +1,4 @@
-package data.cache
+package com.ponykamni.stamp.data.cache
 
 import com.ponykamni.entity.StampMessageID
 import com.ponykamni.entity.StampRecord

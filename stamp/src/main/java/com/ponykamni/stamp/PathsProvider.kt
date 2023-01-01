@@ -1,3 +1,5 @@
+package com.ponykamni.stamp
+
 object PathsProvider {
 
     fun getPdfFolderName(): String = PDF_FOLDER_NAME

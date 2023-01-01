@@ -1,6 +1,6 @@
-package data.cache
+package com.ponykamni.stamp.data.cache
 
-import PathsProvider
+import com.ponykamni.stamp.PathsProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ponykamni.entity.StampMessageID

@@ -1,9 +1,9 @@
-package domain
+package com.ponykamni.stamp.domain
 
-import data.Logger
-import data.StampRepository
-import data.cache.CacheRepository
-import data.gmail.GmailNasaRepository
+import com.ponykamni.stamp.data.Logger
+import com.ponykamni.stamp.data.StampRepository
+import com.ponykamni.stamp.data.cache.CacheRepository
+import com.ponykamni.stamp.data.gmail.GmailNasaRepository
 
 class DownloadStampsUseCase {
 

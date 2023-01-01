@@ -1,10 +1,10 @@
-package data
+package com.ponykamni.stamp.data
 
-import PathsProvider
+import com.ponykamni.stamp.PathsProvider
 import com.ponykamni.entity.StampDto
 import com.ponykamni.entity.StampRecord
-import data.network.RemoteFileDataSource
-import data.network.RemotePageDataSource
+import com.ponykamni.stamp.data.network.RemoteFileDataSource
+import com.ponykamni.stamp.data.network.RemotePageDataSource
 import java.io.File
 
 class StampRepository {
@@ -47,7 +47,7 @@ class StampRepository {
     }
 
     private fun StampRecord.getFullPath(): String =
-        "${PathsProvider.getPdfFolderName()}/$fileName.pdf"
+        "${com.ponykamni.stamp.PathsProvider.getPdfFolderName()}/$fileName.pdf"
 
     companion object {
 

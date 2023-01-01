@@ -1,4 +1,4 @@
-package data
+package com.ponykamni.stamp.data
 
 class HardcodedPageDataDataSource {
 
