@@ -1,4 +1,4 @@
-package com.ponykamni.stamp.data.gmail
+package com.ponykamni.mail.data
 
 import com.google.api.services.gmail.model.Message
 import com.ponykamni.entity.StampMessageID

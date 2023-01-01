@@ -3,7 +3,7 @@ package com.ponykamni.stamp.domain
 import com.ponykamni.logger.Logger
 import com.ponykamni.stamp.data.StampRepository
 import com.ponykamni.stamp.data.cache.CacheRepository
-import com.ponykamni.stamp.data.gmail.GmailNasaRepository
+import com.ponykamni.mail.data.GmailNasaRepository
 
 class DownloadStampsUseCase {
 

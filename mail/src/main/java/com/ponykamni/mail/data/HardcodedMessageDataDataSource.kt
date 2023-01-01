@@ -1,4 +1,4 @@
-package com.ponykamni.stamp.data
+package com.ponykamni.mail.data
 
 import com.ponykamni.entity.StampUri
 import java.net.URI

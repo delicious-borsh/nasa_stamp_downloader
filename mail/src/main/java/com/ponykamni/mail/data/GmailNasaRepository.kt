@@ -1,8 +1,7 @@
-package com.ponykamni.stamp.data.gmail
+package com.ponykamni.mail.data
 
 import com.ponykamni.entity.StampDto
 import com.ponykamni.entity.StampMessageID
-import com.ponykamni.stamp.data.HardcodedMessageDataDataSource
 import com.ponykamni.logger.Logger
 
 class GmailNasaRepository {
