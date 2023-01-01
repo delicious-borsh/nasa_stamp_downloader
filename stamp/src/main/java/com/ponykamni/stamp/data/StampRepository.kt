@@ -47,8 +47,7 @@ class StampRepository {
         }
     }
 
-    private fun StampRecord.getFullPath(): String =
-        "${PathsProvider.getPdfFolderName()}/$fileName.pdf"
+    private fun StampRecord.getFullPath(): String = PathsProvider.getPdfFilePath(fileName)
 
     companion object {
 

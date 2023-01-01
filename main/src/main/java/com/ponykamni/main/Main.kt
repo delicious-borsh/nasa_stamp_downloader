@@ -6,6 +6,7 @@ import com.ponykamni.stamp.domain.DownloadStampsUseCase
 import com.ponykamni.stamp.domain.GetStampsRecordsUseCase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.io.File
 
 class Main {
 
@@ -20,18 +21,22 @@ class Main {
         fun main(args: Array<String>): Unit = runBlocking {
             launch {
 
-                Companion.downloadStampsUseCase()
+                val filesFolder = File(PathsProvider.getFilesFolderName())
 
-                val records = Companion.getStampsUseCase()
+                if (!filesFolder.exists()) {
+                    filesFolder.mkdir()
+                }
+
+                downloadStampsUseCase()
+
+                val records = getStampsUseCase()
 
                 for (record in records) {
                     val name = record.fileName
 
-                    val pdfPath = "${PathsProvider.getPdfFolderName()}/$name.pdf"
-                    val imagePath =
-                        "${PathsProvider.getImagesFolderName()}/${name}${PathsProvider.getImagesSuffix()}.png"
-                    val squarePath =
-                        "${PathsProvider.getSquareImagesFolderName()}/${name}${PathsProvider.getSquareImagesSuffix()}.png"
+                    val pdfPath = PathsProvider.getPdfFilePath(name)
+                    val imagePath = PathsProvider.getImageFilePath(name)
+                    val squarePath = PathsProvider.getSquareImageFilePath(name)
 
                     PdfConverter().processSingleDocument(
                         pdfPath,
