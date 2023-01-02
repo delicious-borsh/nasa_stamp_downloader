@@ -1,40 +1,24 @@
 package com.ponykamni.cache
 
-import com.ponykamni.path.PathsProvider
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ponykamni.entity.StampMessageID
 import com.ponykamni.entity.StampRecord
+import com.ponykamni.path.PathsProvider
 import java.io.File
 import java.io.OutputStreamWriter
 
 
 class CacheDataSource {
 
-    private val itemType = object : TypeToken<List<StampRecord>>() {}.type
+    private val gson = Gson()
 
-    private val cache = HashMap<StampMessageID, StampRecord>()
+    fun putToCache(record: StampRecord) {
+        ensureFolderExists()
 
-    fun loadCache() {
-        val file = File(FILE_NAME)
+        val file = File(record.id.toPath())
 
-        if (file.exists()) {
-            val inputStream = file.inputStream()
-
-            val json = Gson().fromJson<List<StampRecord>>(inputStream.reader(), itemType)
-
-            cache.clear()
-            cache.putAll(json.toMap())
-        }
-    }
-
-    fun updateCache(stampRecords: List<StampRecord>) {
-        if (!File(path).exists()) {
-            File(path).mkdir()
-        }
-
-        File(FILE_NAME).outputStream().use { os ->
-            val json = Gson().toJson(stampRecords)
+        file.outputStream().use { os ->
+            val json = gson.toJson(record)
             val writer = OutputStreamWriter(os)
             writer.append(json)
             writer.close()
@@ -42,18 +26,37 @@ class CacheDataSource {
 
     }
 
-    fun getFromCache(stampMessageId: StampMessageID?): StampRecord? {
-        return cache[stampMessageId]
+    private fun ensureFolderExists() {
+        val file = File(path)
+        if (!file.exists()) {
+            file.mkdir()
+        }
     }
 
-    fun getAllFromCache(): List<StampRecord> = cache.map { it.value }
+    fun getFromCache(id: StampMessageID): StampRecord? = File(id.toPath()).readIfExistsOrNull()
 
-    private fun List<StampRecord>.toMap(): Map<StampMessageID, StampRecord> =
-        this.associateBy { it.id }
+    fun getAllFromCache(): List<StampRecord> {
+        return File(path).listFiles()?.mapNotNull { file ->
+            file.readIfExistsOrNull()
+        } ?: emptyList()
+    }
+
+    private fun File.readIfExistsOrNull(): StampRecord? =
+        if (this.exists()) {
+            try {
+                val inputStream = this.inputStream()
+                gson.fromJson(inputStream.reader(), StampRecord::class.java)
+            } catch (ex: Exception) {
+                null
+            }
+        } else {
+            null
+        }
+
+    private fun StampMessageID.toPath(): String = "$path/${this.value}.json"
 
     companion object {
-        private val path = PathsProvider.getCacheFolderName()
 
-        private val FILE_NAME = "$path/stamp_records.json"
+        private val path = PathsProvider.getCacheFolderName()
     }
 }

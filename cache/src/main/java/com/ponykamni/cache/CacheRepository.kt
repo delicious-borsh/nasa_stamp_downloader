@@ -7,15 +7,11 @@ class CacheRepository {
 
     private val cacheDataSource = CacheDataSource()
 
-    fun loadCache() {
-        cacheDataSource.loadCache()
+    fun putToCache(stampRecord: StampRecord) {
+        cacheDataSource.putToCache(stampRecord)
     }
 
-    fun updateCache(stampRecords: List<StampRecord>) {
-        cacheDataSource.updateCache(stampRecords)
-    }
-
-    fun getFromCache(stampMessageId: StampMessageID?): StampRecord? =
+    fun getFromCache(stampMessageId: StampMessageID): StampRecord? =
         cacheDataSource.getFromCache(stampMessageId)
 
     fun getAllFromCache(): List<StampRecord> = cacheDataSource.getAllFromCache()

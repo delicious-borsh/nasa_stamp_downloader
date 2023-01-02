@@ -12,8 +12,6 @@ class DownloadStampsUseCase {
     private val cacheRepository = CacheRepository()
 
     suspend operator fun invoke() {
-        cacheRepository.loadCache()
-
         val messages = gmailRepository.getMessages()
 
         val stampRecords = messages.mapIndexedNotNull { index, id ->
@@ -23,13 +21,13 @@ class DownloadStampsUseCase {
             )
             Logger.log(LOG_TAG, "Getting message for id $id")
             cacheRepository.getFromCache(id) ?: gmailRepository.getRemoteMessage(id)?.let {
-                stampRepository.resolveStampInfo(it)
+                val record = stampRepository.resolveStampInfo(it)
+                cacheRepository.putToCache(record)
+                record
             }
         }
 
         stampRecords.forEach { stampRepository.downloadFileForStamp(it) }
-
-        cacheRepository.updateCache(stampRecords)
     }
 
     companion object {
