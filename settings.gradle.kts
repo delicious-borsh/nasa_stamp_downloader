@@ -1,7 +1,6 @@
-include(":imageprocessor")
-
 rootProject.name = "NasaStampDownloader"
 
+include(":imageprocessor")
 include(":entity")
 include(":stamp")
 include(":logger")
