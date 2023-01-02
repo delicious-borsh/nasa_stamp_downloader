@@ -11,8 +11,7 @@ class PdfConverter {
         sourceFilePath: String,
         rawImageFilePath: String,
         squareImageFilePath: String,
-
-        ) {
+    ) {
         val sourceFile = File(sourceFilePath)
         if (!sourceFile.exists()) {
             return
