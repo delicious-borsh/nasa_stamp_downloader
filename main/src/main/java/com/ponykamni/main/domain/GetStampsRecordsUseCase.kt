@@ -1,4 +1,4 @@
-package com.ponykamni.stamp.domain
+package com.ponykamni.main.domain
 
 import com.ponykamni.cache.CacheRepository
 import com.ponykamni.entity.StampRecord

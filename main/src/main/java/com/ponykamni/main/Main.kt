@@ -2,8 +2,8 @@ package com.ponykamni.main
 
 import com.ponykamni.imageprocessor.PdfConverter
 import com.ponykamni.path.PathsProvider
-import com.ponykamni.stamp.domain.DownloadStampsUseCase
-import com.ponykamni.stamp.domain.GetStampsRecordsUseCase
+import com.ponykamni.main.domain.DownloadStampsUseCase
+import com.ponykamni.main.domain.GetStampsRecordsUseCase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.File
