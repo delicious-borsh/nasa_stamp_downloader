@@ -5,7 +5,7 @@ plugins {
     java
 }
 
-group = "org.example"
+group = "com.ponykamni"
 version = "1.0-SNAPSHOT"
 
 repositories {
