@@ -4,10 +4,6 @@ plugins {
     id("kotlin-kapt")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
 
     implementation("com.google.dagger:dagger:${Versions.daggerVersion}")

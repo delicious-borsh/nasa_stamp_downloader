@@ -3,9 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("kotlin-kapt")
 }
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation(project(":entity"))
