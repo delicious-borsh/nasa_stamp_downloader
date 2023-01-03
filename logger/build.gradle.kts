@@ -1,13 +1,15 @@
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    id("kotlin-kapt")
 }
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+
+    implementation("com.google.dagger:dagger:${Versions.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${Versions.daggerVersion}")
 }

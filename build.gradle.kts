@@ -8,8 +8,10 @@ plugins {
 group = "com.ponykamni"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
 tasks.test {

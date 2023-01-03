@@ -1,13 +1,8 @@
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
+    id("kotlin-kapt")
 }
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
-}
-
 
 repositories {
     mavenCentral()
@@ -17,4 +12,7 @@ dependencies {
     implementation(project(":logger"))
 
     implementation("org.apache.pdfbox:pdfbox:2.0.20")
+
+    implementation("com.google.dagger:dagger:${Versions.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${Versions.daggerVersion}")
 }
