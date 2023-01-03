@@ -6,10 +6,11 @@ import com.ponykamni.spacestamploader.main.api.Stamp
 import com.ponykamni.spacestamploader.main.api.StampId
 import com.ponykamni.spacestamploader.main.api.StampTitle
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
+import javax.inject.Inject
 
-class ValidateStampUseCase {
-
-    private val stampRepository = StampRepository()
+class ValidateStampUseCase @Inject constructor(
+    private val stampRepository: StampRepository,
+) {
 
     operator fun invoke(stampRecord: StampRecord): Stamp? {
 

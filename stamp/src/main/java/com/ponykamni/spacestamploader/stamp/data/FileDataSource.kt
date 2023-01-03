@@ -5,8 +5,9 @@ import com.ponykamni.spacestamploader.path.PathsProvider
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.InputStream
+import javax.inject.Inject
 
-class FileDataSource {
+internal class FileDataSource @Inject constructor() {
 
     fun saveFile(responseBody: ResponseBody, filePath: String) {
         responseBody.byteStream().saveToFile(filePath)

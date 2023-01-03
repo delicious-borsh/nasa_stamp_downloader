@@ -3,7 +3,7 @@ package com.ponykamni.spacestamploader.stamp.data.network
 import okhttp3.ResponseBody
 import retrofit2.http.*
 
-interface BoxNasaApi {
+internal interface BoxNasaApi {
 
     @Streaming
     @GET("index.php")

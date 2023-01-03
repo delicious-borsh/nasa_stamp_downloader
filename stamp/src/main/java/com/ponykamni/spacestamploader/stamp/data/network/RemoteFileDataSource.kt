@@ -4,8 +4,9 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import javax.inject.Inject
 
-class RemoteFileDataSource() {
+internal class RemoteFileDataSource @Inject constructor() {
 
     private val boxNasaApi: BoxNasaApi = Retrofit
         .Builder()

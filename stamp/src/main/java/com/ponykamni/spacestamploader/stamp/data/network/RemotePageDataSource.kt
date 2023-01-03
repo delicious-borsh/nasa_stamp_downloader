@@ -3,8 +3,9 @@ package com.ponykamni.spacestamploader.stamp.data.network
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import javax.inject.Inject
 
-class RemotePageDataSource() {
+internal class RemotePageDataSource @Inject constructor() {
 
     private val someStrangeApi: SomeStrangeApi = Retrofit
         .Builder()

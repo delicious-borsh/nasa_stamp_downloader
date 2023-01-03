@@ -12,9 +12,8 @@ class SpaceStampLoader @Inject constructor(
     private val processStampScenario: ProcessStampScenario,
     private val getStampsRecordsUseCase: GetStampsRecordsUseCase,
     private val gmailRepository: MailRepository,
+    private val validateStampUseCase: ValidateStampUseCase,
 ) {
-
-    private val validateStampUseCase = ValidateStampUseCase()
 
     suspend fun getStamps(): List<Stamp> {
         prepareFolder()

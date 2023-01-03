@@ -11,9 +11,8 @@ import javax.inject.Inject
 class PrepareRecordForStampUseCase @Inject constructor(
     private val cacheRepository: CacheRepository,
     private val gmailRepository: MailRepository,
+    private val stampRepository: StampRepository,
 ) {
-
-    private val stampRepository = StampRepository()
 
     suspend operator fun invoke(id: StampMessageID): StampRecord? {
 

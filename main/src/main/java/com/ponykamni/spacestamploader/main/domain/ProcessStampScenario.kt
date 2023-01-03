@@ -8,10 +8,8 @@ import javax.inject.Inject
 class ProcessStampScenario @Inject constructor(
     private val prepareRecordForStampUseCase: PrepareRecordForStampUseCase,
     private val prepareImageForStampUseCase: PrepareImageForStampUseCase,
+    private val stampRepository: StampRepository,
 ) {
-
-    private val stampRepository = StampRepository()
-
 
     suspend operator fun invoke(id: StampMessageID) {
 

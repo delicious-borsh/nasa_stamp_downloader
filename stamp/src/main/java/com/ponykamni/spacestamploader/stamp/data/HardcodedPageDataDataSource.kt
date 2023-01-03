@@ -1,6 +1,8 @@
 package com.ponykamni.spacestamploader.stamp.data
 
-class HardcodedPageDataDataSource {
+import javax.inject.Inject
+
+internal class HardcodedPageDataDataSource @Inject constructor() {
 
     fun getFileName(page: String): String = getSubstringFromPage("{\"items\":[{\"typedID\":", page)
 

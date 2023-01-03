@@ -10,6 +10,9 @@ import com.ponykamni.spacestamploader.imageprocessor.di.PdfConverterFeatureImpl
 import com.ponykamni.spacestamploader.mail.data.MailRepository
 import com.ponykamni.spacestamploader.mail.data.di.MailFeature
 import com.ponykamni.spacestamploader.mail.data.di.MailFeatureImpl
+import com.ponykamni.spacestamploader.stamp.data.StampRepository
+import com.ponykamni.spacestamploader.stamp.data.di.StampFeature
+import com.ponykamni.spacestamploader.stamp.data.di.StampFeatureImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,6 +29,9 @@ internal interface MainModule {
     @Binds
     fun bindMailFeature(impl: MailFeatureImpl): MailFeature
 
+    @Binds
+    fun bindStampFeature(impl: StampFeatureImpl): StampFeature
+
     companion object {
 
         @Provides
@@ -39,6 +45,10 @@ internal interface MainModule {
         @Provides
         fun provideMailRepository(feature: MailFeature): MailRepository =
             feature.getMailRepository()
+
+        @Provides
+        fun provideStampRepository(feature: StampFeature): StampRepository =
+            feature.getStampRepository()
 
         @Provides
         fun provideGson(): Gson = Gson()
