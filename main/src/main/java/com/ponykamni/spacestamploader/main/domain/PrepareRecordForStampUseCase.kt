@@ -8,7 +8,7 @@ import com.ponykamni.spacestamploader.mail.data.MailRepository
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
 import javax.inject.Inject
 
-class PrepareRecordForStampUseCase @Inject constructor(
+internal class PrepareRecordForStampUseCase @Inject constructor(
     private val cacheRepository: CacheRepository,
     private val gmailRepository: MailRepository,
     private val stampRepository: StampRepository,

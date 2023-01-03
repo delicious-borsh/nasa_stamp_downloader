@@ -4,7 +4,7 @@ import com.ponykamni.spacestamploader.main.di.DaggerMainComponent
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class Main {
+internal class Main {
 
     companion object {
 

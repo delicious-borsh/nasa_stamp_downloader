@@ -4,7 +4,7 @@ import com.ponykamni.spacestamploader.cache.CacheRepository
 import com.ponykamni.spacestamploader.entity.StampRecord
 import javax.inject.Inject
 
-class GetStampsRecordsUseCase @Inject constructor(
+internal class GetStampsRecordsUseCase @Inject constructor(
     private val cacheRepository: CacheRepository,
 ) {
 

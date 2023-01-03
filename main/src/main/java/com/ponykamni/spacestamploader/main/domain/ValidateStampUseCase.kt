@@ -8,7 +8,7 @@ import com.ponykamni.spacestamploader.main.api.StampTitle
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
 import javax.inject.Inject
 
-class ValidateStampUseCase @Inject constructor(
+internal class ValidateStampUseCase @Inject constructor(
     private val stampRepository: StampRepository,
 ) {
 

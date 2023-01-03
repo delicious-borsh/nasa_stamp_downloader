@@ -5,7 +5,7 @@ import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
 import javax.inject.Inject
 
-class ProcessStampScenario @Inject constructor(
+internal class ProcessStampScenario @Inject constructor(
     private val prepareRecordForStampUseCase: PrepareRecordForStampUseCase,
     private val prepareImageForStampUseCase: PrepareImageForStampUseCase,
     private val stampRepository: StampRepository,

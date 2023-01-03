@@ -6,7 +6,7 @@ import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.path.PathsProvider
 import javax.inject.Inject
 
-class PrepareImageForStampUseCase @Inject constructor(
+internal class PrepareImageForStampUseCase @Inject constructor(
     private val pdfConverter: PdfConverter,
 ) {
 

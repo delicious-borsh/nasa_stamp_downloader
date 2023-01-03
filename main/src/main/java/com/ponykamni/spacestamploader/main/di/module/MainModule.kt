@@ -10,6 +10,8 @@ import com.ponykamni.spacestamploader.imageprocessor.di.PdfConverterFeatureImpl
 import com.ponykamni.spacestamploader.mail.data.MailRepository
 import com.ponykamni.spacestamploader.mail.data.di.MailFeature
 import com.ponykamni.spacestamploader.mail.data.di.MailFeatureImpl
+import com.ponykamni.spacestamploader.main.SpaceStampLoaderImpl
+import com.ponykamni.spacestamploader.main.api.SpaceStampLoader
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
 import com.ponykamni.spacestamploader.stamp.data.di.StampFeature
 import com.ponykamni.spacestamploader.stamp.data.di.StampFeatureImpl
@@ -31,6 +33,9 @@ internal interface MainModule {
 
     @Binds
     fun bindStampFeature(impl: StampFeatureImpl): StampFeature
+
+    @Binds
+    fun bindSpaceStampLoader(impl: SpaceStampLoaderImpl): SpaceStampLoader
 
     companion object {
 
