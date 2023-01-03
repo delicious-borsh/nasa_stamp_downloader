@@ -2,8 +2,9 @@ package com.ponykamni.spacestamploader.mail.data
 
 import com.ponykamni.spacestamploader.entity.StampUri
 import java.net.URI
+import javax.inject.Inject
 
-class HardcodedMessageDataDataSource {
+internal class HardcodedMessageDataDataSource @Inject constructor() {
 
     fun getMissionTitle(subject: String?): String? = subject?.let { getTitleFromSubject(it) }
 

@@ -7,6 +7,9 @@ import com.ponykamni.spacestamploader.cache.di.CacheFeatureImpl
 import com.ponykamni.spacestamploader.imageprocessor.PdfConverter
 import com.ponykamni.spacestamploader.imageprocessor.di.PdfConverterFeature
 import com.ponykamni.spacestamploader.imageprocessor.di.PdfConverterFeatureImpl
+import com.ponykamni.spacestamploader.mail.data.MailRepository
+import com.ponykamni.spacestamploader.mail.data.di.MailFeature
+import com.ponykamni.spacestamploader.mail.data.di.MailFeatureImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -20,6 +23,9 @@ internal interface MainModule {
     @Binds
     fun bindPdfConverterFeature(impl: PdfConverterFeatureImpl): PdfConverterFeature
 
+    @Binds
+    fun bindMailFeature(impl: MailFeatureImpl): MailFeature
+
     companion object {
 
         @Provides
@@ -29,6 +35,10 @@ internal interface MainModule {
         @Provides
         fun providePdfConverter(feature: PdfConverterFeature): PdfConverter =
             feature.getPdfConverter()
+
+        @Provides
+        fun provideMailRepository(feature: MailFeature): MailRepository =
+            feature.getMailRepository()
 
         @Provides
         fun provideGson(): Gson = Gson()

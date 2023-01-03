@@ -3,15 +3,16 @@ package com.ponykamni.spacestamploader.mail.data
 import com.ponykamni.spacestamploader.entity.StampDto
 import com.ponykamni.spacestamploader.entity.StampMessageID
 import com.ponykamni.spacestamploader.logger.Logger
+import javax.inject.Inject
 
-class GmailNasaRepository {
+internal class MailRepositoryImpl @Inject constructor(
+    private val gmailDataSource: GmailDataSource,
+    private val hardcodedMessageDataDataSource: HardcodedMessageDataDataSource,
+) : MailRepository {
 
-    private val gmailDataSource = GmailDataSource()
-    private val hardcodedMessageDataDataSource = HardcodedMessageDataDataSource()
+    override fun getMessages(): List<StampMessageID> = gmailDataSource.getMessageIdList(STAMP_QUERY)
 
-    fun getMessages(): List<StampMessageID> = gmailDataSource.getMessageIdList(STAMP_QUERY)
-
-    fun getRemoteMessage(stampMessageID: StampMessageID): StampDto? {
+    override fun getRemoteMessage(stampMessageID: StampMessageID): StampDto? {
         val message = gmailDataSource.getMessage(stampMessageID.value)
         val wrapper = MessageWrapper(message)
 

@@ -11,7 +11,7 @@ import com.google.api.client.util.store.FileDataStoreFactory
 import com.google.api.services.gmail.GmailScopes
 import java.io.*
 
-class GoogleCloudAuthenticator(
+internal class GoogleCloudAuthenticator(
     private val jsonFactory: JsonFactory,
 ) {
 

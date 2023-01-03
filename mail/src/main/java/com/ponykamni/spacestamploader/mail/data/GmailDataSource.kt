@@ -6,10 +6,11 @@ import com.google.api.client.json.JsonFactory
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.gmail.Gmail
 import com.google.api.services.gmail.model.Message
-import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.entity.StampMessageID
+import com.ponykamni.spacestamploader.logger.Logger
+import javax.inject.Inject
 
-class GmailDataSource {
+internal class GmailDataSource @Inject constructor() {
 
     private val jsonFactory: JsonFactory = GsonFactory.getDefaultInstance()
     private val authenticator = GoogleCloudAuthenticator(jsonFactory)
