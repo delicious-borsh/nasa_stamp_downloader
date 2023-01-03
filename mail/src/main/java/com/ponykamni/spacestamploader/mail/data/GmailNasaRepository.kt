@@ -25,7 +25,6 @@ class GmailNasaRepository {
         Logger.log(LOG_TAG, "Got body for messageID $stampMessageID")
 
         val title = hardcodedMessageDataDataSource.getMissionTitle(wrapper.getSubject())
-//        val title = (wrapper.getSubject())
 
         return StampDto(stampMessageID, stampUri, title).also {
             Logger.log(LOG_TAG, "Got stamp $it")

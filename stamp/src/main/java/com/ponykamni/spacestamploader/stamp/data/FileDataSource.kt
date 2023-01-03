@@ -28,6 +28,8 @@ class FileDataSource {
         }
     }
 
+    fun isFilePresent(filePath: String): Boolean = File(filePath).exists()
+
     companion object {
 
         private const val LOG_TAG = "FileDataSource"

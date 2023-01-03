@@ -15,4 +15,6 @@ class CacheRepository {
         cacheDataSource.getFromCache(stampMessageId)
 
     fun getAllFromCache(): List<StampRecord> = cacheDataSource.getAllFromCache()
+
+    fun getCachedIds(): List<StampMessageID> = cacheDataSource.getCachedFilesList()
 }

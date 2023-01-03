@@ -28,7 +28,7 @@ class StampRepository {
             stampDto.id,
             fileName,
             sharedName,
-            stampDto.missionName
+            stampDto.missionName ?: ""
         )
     }
 
@@ -47,7 +47,16 @@ class StampRepository {
         }
     }
 
+    fun isStampFilePresent(stampRecord: StampRecord): Boolean =
+        fileDataSource.isFilePresent(stampRecord.getFullPath())
+
+    fun isStampImagePresent(stampRecord: StampRecord): Boolean =
+        fileDataSource.isFilePresent(stampRecord.getSquareImageFullPath())
+
     private fun StampRecord.getFullPath(): String = PathsProvider.getPdfFilePath(fileName)
+
+    private fun StampRecord.getSquareImageFullPath(): String =
+        PathsProvider.getSquareImageFilePath(fileName) //not exactly this module's domain but who cares
 
     companion object {
 

@@ -41,6 +41,12 @@ class CacheDataSource {
         } ?: emptyList()
     }
 
+    fun getCachedFilesList(): List<StampMessageID> {
+        return File(path).listFiles()?.mapNotNull { file ->
+            parseNameForId(file.name)
+        } ?: emptyList()
+    }
+
     private fun File.readIfExistsOrNull(): StampRecord? =
         if (this.exists()) {
             try {
@@ -54,6 +60,11 @@ class CacheDataSource {
         }
 
     private fun StampMessageID.toPath(): String = "$path/${this.value}.json"
+
+    private fun parseNameForId(name: String): StampMessageID? {
+        val idString = name.split('.').firstOrNull() ?: return null
+        return StampMessageID(idString)
+    }
 
     companion object {
 
