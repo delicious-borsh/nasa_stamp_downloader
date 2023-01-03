@@ -4,9 +4,10 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.rendering.PDFRenderer
 import java.io.File
 import javax.imageio.ImageIO
+import javax.inject.Inject
 
 
-class PdfToImageConverter {
+internal class PdfToImageConverter @Inject constructor() {
 
     fun convert(sourceFilePath: String, destFilePath: String) {
         val sourceFile = File(sourceFilePath)
@@ -36,7 +37,6 @@ class PdfToImageConverter {
                     ImageIO.write(bim, "png", destFile)
                 }
             }
-
 
         } catch (e: Exception) {
             e.printStackTrace()

@@ -4,9 +4,11 @@ import com.ponykamni.spacestamploader.entity.StampRecord
 import com.ponykamni.spacestamploader.imageprocessor.PdfConverter
 import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.path.PathsProvider
+import javax.inject.Inject
 
-class PrepareImageForStampUseCase {
-    private val pdfConverter = PdfConverter()
+class PrepareImageForStampUseCase @Inject constructor(
+    private val pdfConverter: PdfConverter,
+) {
 
     operator fun invoke(stampRecord: StampRecord) {
 

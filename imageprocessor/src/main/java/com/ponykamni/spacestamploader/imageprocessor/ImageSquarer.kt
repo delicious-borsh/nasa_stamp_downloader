@@ -3,8 +3,9 @@ package com.ponykamni.spacestamploader.imageprocessor
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
+import javax.inject.Inject
 
-class ImageSquarer {
+internal class ImageSquarer @Inject constructor() {
 
     fun squareImage(sourceFilePath: String, destFilePath: String) {
 
