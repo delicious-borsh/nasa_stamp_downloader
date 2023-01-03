@@ -3,12 +3,14 @@ package com.ponykamni.spacestamploader.main.domain
 import com.ponykamni.spacestamploader.entity.StampMessageID
 import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
+import javax.inject.Inject
 
-class ProcessStampScenario {
+class ProcessStampScenario @Inject constructor(
+    private val prepareRecordForStampUseCase: PrepareRecordForStampUseCase,
+) {
 
     private val stampRepository = StampRepository()
 
-    private val prepareRecordForStampUseCase = PrepareRecordForStampUseCase()
     private val prepareImageForStampUseCase = PrepareImageForStampUseCase()
 
     suspend operator fun invoke(id: StampMessageID) {

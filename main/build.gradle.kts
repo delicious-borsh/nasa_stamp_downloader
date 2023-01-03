@@ -13,6 +13,8 @@ dependencies {
     implementation(project(":stamp"))
     implementation(project(":cache"))
 
+    implementation("com.google.code.gson:gson:2.10")
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     implementation("com.google.dagger:dagger:${Versions.daggerVersion}")

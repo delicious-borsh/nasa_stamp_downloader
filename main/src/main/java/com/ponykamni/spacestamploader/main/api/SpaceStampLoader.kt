@@ -6,12 +6,15 @@ import com.ponykamni.spacestamploader.main.domain.ProcessStampScenario
 import com.ponykamni.spacestamploader.main.domain.ValidateStampUseCase
 import com.ponykamni.spacestamploader.path.PathsProvider
 import java.io.File
+import javax.inject.Inject
 
-class SpaceStampLoader {
+class SpaceStampLoader @Inject constructor(
+    private val processStampScenario: ProcessStampScenario,
+    private val getStampsRecordsUseCase: GetStampsRecordsUseCase,
+) {
 
     private val gmailRepository = GmailNasaRepository()
-    private val processStampScenario = ProcessStampScenario()
-    private val getStampsRecordsUseCase = GetStampsRecordsUseCase()
+
     private val validateStampUseCase = ValidateStampUseCase()
 
     suspend fun getStamps(): List<Stamp> {

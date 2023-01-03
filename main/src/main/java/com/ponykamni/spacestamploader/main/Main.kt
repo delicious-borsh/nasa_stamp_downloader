@@ -1,6 +1,6 @@
 package com.ponykamni.spacestamploader.main
 
-import com.ponykamni.spacestamploader.main.api.SpaceStampLoader
+import com.ponykamni.spacestamploader.main.di.DaggerMainComponent
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -10,7 +10,9 @@ class Main {
 
         private const val LOG_TAG = "com.ponykamni.main.Main"
 
-        private val spaceStampLoader = SpaceStampLoader()
+        private val component = DaggerMainComponent.factory().create()
+
+        private val spaceStampLoader = component.getSpaceStampLoader()
 
         @JvmStatic
         fun main(args: Array<String>): Unit = runBlocking {

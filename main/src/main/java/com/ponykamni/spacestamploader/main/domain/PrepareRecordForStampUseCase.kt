@@ -6,12 +6,14 @@ import com.ponykamni.spacestamploader.entity.StampRecord
 import com.ponykamni.spacestamploader.logger.Logger
 import com.ponykamni.spacestamploader.mail.data.GmailNasaRepository
 import com.ponykamni.spacestamploader.stamp.data.StampRepository
+import javax.inject.Inject
 
-class PrepareRecordForStampUseCase {
+class PrepareRecordForStampUseCase @Inject constructor(
+    private val cacheRepository: CacheRepository,
+) {
 
     private val gmailRepository = GmailNasaRepository()
     private val stampRepository = StampRepository()
-    private val cacheRepository = CacheRepository()
 
     suspend operator fun invoke(id: StampMessageID): StampRecord? {
 

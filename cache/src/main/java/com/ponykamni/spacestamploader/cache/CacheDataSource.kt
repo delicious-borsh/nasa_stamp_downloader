@@ -6,11 +6,12 @@ import com.ponykamni.spacestamploader.entity.StampRecord
 import com.ponykamni.spacestamploader.path.PathsProvider
 import java.io.File
 import java.io.OutputStreamWriter
+import javax.inject.Inject
 
 
-class CacheDataSource {
-
-    private val gson = Gson()
+internal class CacheDataSource @Inject constructor(
+    private val gson: Gson,
+) {
 
     fun putToCache(record: StampRecord) {
         ensureFolderExists()
